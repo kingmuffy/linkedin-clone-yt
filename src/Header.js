@@ -7,8 +7,16 @@ import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive';
 import WorkIcon from '@material-ui/icons/Work';
 import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
 import HeaderOption from './HeaderOption';
+import { useDispatch } from 'react-redux';
+import { auth } from './firebase';
+import {logout } from "./features/userSlice"
 
 const Header = () => {
+    const dispatch = useDispatch()
+    const logOutOfApp = () =>{
+        dispatch(logout())
+        auth.signOut();
+    };
     return (
         <div className="header">
          <div className="header__left">
@@ -16,7 +24,7 @@ const Header = () => {
 
              <div className="header__search">
              <SearchIcon/>
-             <input type="text" />
+             <input placeholder="search" type="text" />
 
 
 
@@ -31,7 +39,8 @@ const Header = () => {
              <HeaderOption Icon={MessageIcon}title="Message"/>
              <HeaderOption Icon={WorkIcon}title="Jobs"/>
              <HeaderOption Icon={NotificationsActiveIcon}title="Notification"/>
-             <HeaderOption avatar='https://scontent.ffjr1-3.fna.fbcdn.net/v/t1.0-9/14713590_1357419237624367_3947016782911371143_n.jpg?_nc_cat=109&ccb=1-3&_nc_sid=09cbfe&_nc_ohc=A_YM5ar0GLUAX_ylLhD&_nc_ht=scontent.ffjr1-3.fna&oh=113992d19b488c3ae50f48c7632fbf90&oe=6072D3F9' title='me'/>
+             <HeaderOption avatar={true} title='sign out'
+             onClick={logOutOfApp}/>
 
 
 
